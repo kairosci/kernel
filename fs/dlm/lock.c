@@ -6371,4 +6371,3 @@ int dlm_debug_add_lkb_to_waiters(struct dlm_ls *ls, uint32_t lkb_id,
 	dlm_put_lkb(lkb);
 	return 0;
 }
-
