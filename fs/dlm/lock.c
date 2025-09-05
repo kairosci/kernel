@@ -3672,9 +3672,12 @@ static int send_unlock(struct dlm_rsb *r, struct dlm_lkb *lkb)
 			count++;
 	}
 
-	/* If this is the last lock we hold on the rsb, then set
-	   MASTER_UNCERTAIN to force the next request on the rsb to confirm
-	   that the master is still correct. */
+/*
+ * When releasing the last lock on the rsb, we mark the master as uncertain.
+ * This ensures that the next lock request will verify the master node,
+ * maintaining consistency across the cluster.
+ */
+
 	if (count == 1)
 		rsb_set_flag(r, RSB_MASTER_UNCERTAIN);
 
@@ -6368,4 +6371,3 @@ int dlm_debug_add_lkb_to_waiters(struct dlm_ls *ls, uint32_t lkb_id,
 	dlm_put_lkb(lkb);
 	return 0;
 }
-
