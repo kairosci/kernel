@@ -3672,11 +3672,11 @@ static int send_unlock(struct dlm_rsb *r, struct dlm_lkb *lkb)
 			count++;
 	}
 
-	/*
-	 * When releasing the last lock on the rsb, we mark the master as uncertain.
- 	 * This ensures that the next lock request will verify the master node,
- 	 * maintaining consistency across the cluster.
- 	 */
+/*
+ * When releasing the last lock on the rsb, we mark the master as uncertain.
+ * This ensures that the next lock request will verify the master node,
+ * maintaining consistency across the cluster.
+ */
 
 	if (count == 1)
 		rsb_set_flag(r, RSB_MASTER_UNCERTAIN);
